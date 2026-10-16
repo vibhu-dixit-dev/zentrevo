@@ -40,6 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chatbot.css">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -377,6 +378,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 style="font-family:var(--font-serif);font-size:24px;margin-bottom:28px;color:var(--cream);">Tell Us About Your Dream Trip</h2>
 
         <form id="contactForm" onsubmit="return submitForm(event)">
+          <input type="hidden" name="_subject" id="formSubject" value="New Trip Enquiry - Zentrevo">
+          <input type="hidden" name="_template" value="table">
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">First Name</label>
@@ -555,16 +558,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <script src="script.js"></script>
 <script>
+  // ── FORMSPREE CONFIGURATION ──
+  // Replace 'YOUR_FORMSPREE_ID' with your 8-character Formspree Form ID (e.g. 'xpwzojkq')
+  // All form enquiries will arrive directly in your inbox: vibhudixit88@gmail.com
+  const FORMSPREE_FORM_ID = 'YOUR_FORMSPREE_ID';
+
   function submitForm(event) {
     event.preventDefault();
     const form = document.getElementById('contactForm');
     const btn = document.getElementById('submitBtn');
     const errorBox = document.getElementById('formError');
     errorBox.style.display = 'none';
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
 
-    fetch('https://formspree.io/f/mjybbybr', {
+    // Format custom subject line
+    const firstName = form.querySelector('[name="first_name"]')?.value || 'Guest';
+    const lastName = form.querySelector('[name="last_name"]')?.value || '';
+    const dest = form.querySelector('[name="destination"]')?.value || 'Custom Tour';
+    const subjectEl = document.getElementById('formSubject');
+    if (subjectEl) {
+      subjectEl.value = `[Zentrevo Enquiry] ${firstName} ${lastName} — ${dest}`;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending Enquiry...';
+
+    const endpoint = (FORMSPREE_FORM_ID && FORMSPREE_FORM_ID !== 'YOUR_FORMSPREE_ID')
+      ? `https://formspree.io/f/${FORMSPREE_FORM_ID}`
+      : 'https://formspree.io/f/YOUR_FORMSPREE_ID';
+
+    fetch(endpoint, {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
@@ -573,9 +595,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         form.style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
       } else {
-        throw new Error('Submission failed');
+        throw new Error('Formspree submission returned error');
       }
-    }).catch(() => {
+    }).catch(err => {
+      console.warn('Formspree submission error:', err);
+      errorBox.innerHTML = `
+        Unable to submit automatically. Please ensure your Formspree Form ID is configured,
+        or <a href="mailto:vibhudixit88@gmail.com?subject=Trip%20Enquiry%20from%20${encodeURIComponent(firstName)}" style="color:var(--gold);text-decoration:underline;">click here to email vibhudixit88@gmail.com directly</a>.
+      `;
       errorBox.style.display = 'block';
       btn.disabled = false;
       btn.textContent = 'Send My Enquiry ✈';
@@ -590,5 +617,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 <script src="search.js"></script>
+<script src="chatbot.js"></script>
 </body>
 </html>
