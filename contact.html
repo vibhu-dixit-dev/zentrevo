@@ -377,7 +377,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="section-tag" style="margin-bottom:6px;">Send a Message</div>
         <h2 style="font-family:var(--font-serif);font-size:24px;margin-bottom:28px;color:var(--cream);">Tell Us About Your Dream Trip</h2>
 
-        <form id="contactForm" onsubmit="return submitForm(event)">
+        <form id="contactForm" action="https://formspree.io/f/mgaorjeq" method="POST" onsubmit="return submitForm(event)">
           <input type="hidden" name="_subject" id="formSubject" value="New Trip Enquiry - Zentrevo">
           <input type="hidden" name="_template" value="table">
           <div class="form-row">
@@ -559,9 +559,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="script.js"></script>
 <script>
   // ── FORMSPREE CONFIGURATION ──
-  // Replace 'YOUR_FORMSPREE_ID' with your 8-character Formspree Form ID (e.g. 'xpwzojkq')
-  // All form enquiries will arrive directly in your inbox: vibhudixit88@gmail.com
-  const FORMSPREE_FORM_ID = 'YOUR_FORMSPREE_ID';
+  // Formspree Form ID: mgaorjeq (Destination email: vibhudixit88@gmail.com)
+  const FORMSPREE_FORM_ID = 'mgaorjeq';
 
   function submitForm(event) {
     event.preventDefault();
@@ -582,26 +581,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     btn.disabled = true;
     btn.textContent = 'Sending Enquiry...';
 
-    const endpoint = (FORMSPREE_FORM_ID && FORMSPREE_FORM_ID !== 'YOUR_FORMSPREE_ID')
-      ? `https://formspree.io/f/${FORMSPREE_FORM_ID}`
-      : 'https://formspree.io/f/YOUR_FORMSPREE_ID';
+    const endpoint = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
 
     fetch(endpoint, {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
-    }).then(response => {
+    }).then(async response => {
       if (response.ok) {
         form.style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
       } else {
-        throw new Error('Formspree submission returned error');
+        const data = await response.json().catch(() => ({}));
+        let message = 'Unable to send message. Please try again.';
+        if (data && data.errors && data.errors.length > 0) {
+          message = data.errors.map(e => e.message).join(', ');
+        }
+        throw new Error(message);
       }
     }).catch(err => {
       console.warn('Formspree submission error:', err);
       errorBox.innerHTML = `
-        Unable to submit automatically. Please ensure your Formspree Form ID is configured,
-        or <a href="mailto:vibhudixit88@gmail.com?subject=Trip%20Enquiry%20from%20${encodeURIComponent(firstName)}" style="color:var(--gold);text-decoration:underline;">click here to email vibhudixit88@gmail.com directly</a>.
+        ${err.message || 'Unable to submit automatically.'}
+        <br>Alternatively, <a href="mailto:vibhudixit88@gmail.com?subject=Trip%20Enquiry%20from%20${encodeURIComponent(firstName)}" style="color:var(--gold);text-decoration:underline;">click here to email vibhudixit88@gmail.com directly</a>.
       `;
       errorBox.style.display = 'block';
       btn.disabled = false;
