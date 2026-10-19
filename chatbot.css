@@ -364,6 +364,63 @@
   font-weight: 500;
 }
 
+.zc-bubble .zc-h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.98rem;
+  color: #f7e7c4;
+  margin: 0.7rem 0 0.4rem;
+}
+
+.zc-bubble .zc-h4 {
+  font-size: 0.88rem;
+  color: #dcb576;
+  font-weight: 600;
+  margin: 0.6rem 0 0.3rem;
+}
+
+.zc-bubble .zc-hr {
+  border: none;
+  border-top: 1px solid rgba(200, 151, 42, 0.2);
+  margin: 0.6rem 0;
+}
+
+.zc-bubble .zc-table-wrap {
+  overflow-x: auto;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  border: 1px solid rgba(200, 151, 42, 0.2);
+}
+
+.zc-bubble .zc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.74rem;
+  text-align: left;
+}
+
+.zc-bubble .zc-table th {
+  background: rgba(200, 151, 42, 0.15);
+  color: #f0dda8;
+  padding: 6px 8px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(200, 151, 42, 0.25);
+  white-space: nowrap;
+}
+
+.zc-bubble .zc-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid rgba(200, 151, 42, 0.1);
+  color: #f2ede3;
+}
+
+.zc-bubble .zc-table tr:last-child td {
+  border-bottom: none;
+}
+
+.zc-bubble .zc-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
 /* Typing Indicator */
 .zc-typing {
   display: flex;
