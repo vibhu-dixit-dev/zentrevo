@@ -335,8 +335,26 @@ Formatting instructions:
     return result;
   }
 
-  // ── GROQ API CALL ──
+  // ── GROQ API CALL (Vercel Serverless / Client-Side Hybrid) ──
   async function callGroqAPI(messages, apiKey) {
+    // 1. Try Vercel Serverless Function first (/api/chat using process.env.GROQ_API_KEY)
+    try {
+      const vercelRes = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages, systemPrompt: ZENTREVO_SYSTEM_PROMPT })
+      });
+      if (vercelRes.ok) {
+        const vercelData = await vercelRes.json();
+        if (vercelData && vercelData.reply) {
+          return vercelData.reply;
+        }
+      }
+    } catch (_) {
+      // /api/chat not found (e.g. running on static server or GitHub Pages), fall back to direct Groq
+    }
+
+    // 2. Direct client-side Groq call fallback
     const url = 'https://api.groq.com/openai/v1/chat/completions';
 
     async function requestModel(modelName) {
