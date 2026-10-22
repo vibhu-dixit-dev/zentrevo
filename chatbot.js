@@ -100,8 +100,18 @@ Formatting instructions:
       return "🇮🇹 **Italian Grandeur: Rome, Florence & Amalfi Coast**\n\n• **Duration:** 8 Days · 7 Nights\n• **Starting Price:** From $3,150 / person\n• **Curated Inclusions:**\n  • VIP skip-the-line Colosseum, Roman Forum & Vatican Museums tour\n  • High-speed Frecciarossa rail between Rome and Florence\n  • Private boat charter along the Amalfi Coast (Positano & Capri)\n  • Tuscan winery cellar tour with olive oil and pasta masterclass\n\nReach our European specialists on **WhatsApp: [+91 8619928710](https://wa.me/918619928710)**.";
     }
 
+    // Vrindavan / Mathura / Spiritual Trips (From Gurgaon / Delhi NCR)
+    if (q.includes('vrindavan') || q.includes('mathura') || q.includes('braj') || q.includes('barsana') || q.includes('govardhan') || (q.includes('gurgaon') && q.includes('trip')) || (q.includes('gurugoan') && q.includes('trip'))) {
+      return "🌸 **Bespoke Vrindavan & Mathura Spiritual Escape (From Gurgaon / Delhi NCR)**\n\nYes, absolutely! Zentrevo crafts luxury private spiritual journeys tailored to your schedule:\n\n• **Travel Route:** Gurgaon / Delhi NCR to Vrindavan via Yamuna Expressway (~2.5 to 3 hours drive)\n• **Duration Options:** Same-Day VIP Pilgrimage or 2 Days · 1 Night Weekend Retreat\n• **Curated Inclusions:**\n  • Private luxury AC chauffeur vehicle with doorstep pickup from Gurgaon/Delhi NCR\n  • VIP Fast-Track Temple Darshan: Bankey Bihari Ji, Prem Mandir (evening musical light show), ISKCON Temple, and Radha Raman Temple\n  • Dedicated local spiritual storyteller & cultural escort\n  • Luxury boutique stay options (Nidhivan Sarovar Portico or Brij View)\n  • Authentic Braj Sattvik dining & legendary Mathura Peda tasting experience\n  • Optional extension to Govardhan Hill Parikrama & Barsana (Radha Rani Temple)\n\nWould you like our private trip designer to finalize a vehicle and custom itinerary for your preferred dates? Message us directly on **WhatsApp: [+91 8619928710](https://wa.me/918619928710)** or enquire on our [Contact Page](contact.html)!";
+    }
+
+    // Trip planning / What trips do you plan / Can you plan a trip
+    if (q.includes('trips that') || q.includes('what trips') || q.includes('can you plan') || q.includes('can u plan') || q.includes('destinations you') || q.includes('where do you') || q.includes('places you') || q.includes('planning to')) {
+      return "✈️ **Yes! Zentrevo Plans Bespoke Luxury Journeys Worldwide & Across India**\n\nWhether you need an international luxury vacation, a romantic honeymoon, or a curated weekend road trip, we handle every detail from doorstep to destination:\n\n🌍 **Top International Escapes:**\n• **Paris & France Romance (6D/5N):** Louvre, Eiffel Tower, Champagne Seine cruise — From $2,650\n• **Swiss Alps Luxury (5D/4N):** Glacier Express, Zermatt, Jungfraujoch chalets — From $3,690\n• **Maldives Overwater (7D/6N):** Private water villa, seaplane, spa credits — From $3,290\n• **Japan Heritage (8D/7N):** Bullet train, Tokyo, Kyoto, traditional onsen — From $2,980\n• **East Africa Safari (10D/9N):** Serengeti, Masai Mara private 4x4 drives — From $4,150\n• **Dubai & Desert Luxe (5D/4N):** 5-star beachfront, Burj Khalifa, private yacht — From $2,190\n• **Bali, Santorini, Iceland, Italy & More**\n\n🇮🇳 **India Bespoke & Weekend Journeys:**\n• **Spiritual Escapes:** Private chauffeured trips to Vrindavan, Mathura, Varanasi & Rishikesh\n• **Royal Heritage:** Jaipur, Udaipur & Jodhpur palace stays (From $1,450)\n• **Nature & Hills:** Kerala houseboats, Munnar hills, and Ladakh expeditions\n• **Beach Getaways:** Goa private heritage villas & yachting\n\nTell us your starting city, dates, and dream destination — our travel designers will craft a custom day-by-day plan within 24 hours. Connect with us on **WhatsApp: [+91 8619928710](https://wa.me/918619928710)** or via our [Contact Page](contact.html)!";
+    }
+
     // India
-    if (q.includes('india') || q.includes('rajasthan') || q.includes('kerala') || q.includes('goa') || q.includes('ladakh') || q.includes('taj mahal')) {
+    if (q.includes('india') || q.includes('rajasthan') || q.includes('kerala') || /\bgoa\b/.test(q) || q.includes('ladakh') || q.includes('taj mahal')) {
       return "🇮🇳 **Incredible India Luxury Bespoke Tours**\n\n• **Rajasthan Royal Palaces (7D/6N):** Jaipur, Udaipur, and Jodhpur heritage palace stays — From $1,450/person\n• **Kerala Backwaters & Hills (6D/5N):** Private luxury houseboat & Munnar tea plantations — From $1,190/person\n• **Ladakh High-Pass Expedition (7D/6N):** Pangong Lake & Nubra Valley luxury glamping — From $1,390/person\n• **Goa Coastal Serenity (5D/4N):** Private heritage beach villa & sunset yachting — From $990/person\n• **Golden Triangle (6D/5N):** Delhi, Agra (Taj Mahal sunrise), and Jaipur.\n\nCustomize your India journey on **WhatsApp: [+91 8619928710](https://wa.me/918619928710)**.";
     }
 
@@ -126,7 +136,7 @@ Formatting instructions:
     }
 
     // Comprehensive Fallback
-    return "Thank you for asking! Zentrevo crafts bespoke luxury journeys worldwide, complete with 5-star stays, private guides, flight coordination, and visa processing.\n\n• **Popular Tours:** Paris, Swiss Alps, Maldives, East Africa Safari, Japan, Bali, Dubai, Santorini, and Iceland.\n• **Visas:** Schengen, USA, UK, Canada, Australia, Japan, Dubai.\n• **Personalized Quote:** Share your dates and destination with our team on **WhatsApp: [+91 8619928710](https://wa.me/918619928710)** or submit your enquiry at our [Contact Page](contact.html).\n\n*(You can also connect your free Groq AI key in ⚙ Settings above for unlimited live reasoning.)*";
+    return "Thank you for asking! Zentrevo crafts bespoke luxury journeys worldwide and across India, complete with 5-star stays, private chauffeur cars, guided temple and heritage tours, flight coordination, and personalized itinerary planning.\n\n• **Popular International Escapes:** Paris, Swiss Alps, Maldives, East Africa Safari, Japan, Bali, Dubai, Santorini, and Iceland.\n• **India Tailor-Made Tours:** Private spiritual escapes to Vrindavan & Mathura, royal Rajasthan palace stays, Kerala backwaters, Goa villas, and Ladakh.\n• **Visas:** Complete end-to-end processing for Schengen, USA, UK, Canada, Australia, Japan, and Dubai.\n\nTell us your starting city, dates, and group size — our senior travel planners will design your personalized itinerary within 24 hours! Message us directly on **WhatsApp: [+91 8619928710](https://wa.me/918619928710)** or submit your request on our [Contact Page](contact.html).";
   }
 
   // ── BUILD CHATBOT DOM ──
@@ -237,8 +247,8 @@ Formatting instructions:
     setupEvents();
   }
 
-  // ── DEFAULT PRODUCTION GROQ KEY (Base64 protected from GitHub secret scanning) ──
-  const DEFAULT_GROQ_KEY = atob('Z3NrX25kVDdDalNmYk1zeFhIcGdybjl3V0dkeWIzRll4V0xNSHVlWkNqRVRmSTJGVktRcG5EQUw=');
+  // ── DEFAULT CLIENT KEY (Empty for security; production uses Vercel /api/chat serverless proxy) ──
+  const DEFAULT_GROQ_KEY = '';
 
   // ── MARKDOWN FORMATTER ──
   function formatMarkdown(text) {
@@ -532,23 +542,15 @@ Formatting instructions:
       const apiKey = (savedKey && savedKey.startsWith('gsk_')) ? savedKey : DEFAULT_GROQ_KEY;
 
       try {
-        if (apiKey && apiKey.startsWith('gsk_')) {
-          // Attempt Groq API call
-          history.push({ role: 'user', content: text });
-          const reply = await callGroqAPI(history, apiKey);
-          history.push({ role: 'assistant', content: reply });
-          removeTyping();
-          appendMessage('bot', reply);
-        } else {
-          // Instant Built-in Knowledge Engine
-          await new Promise(r => setTimeout(r, 350));
-          removeTyping();
-          const localAnswer = getLocalResponse(text);
-          appendMessage('bot', localAnswer);
-        }
+        // Attempt live AI response (proxied via Vercel /api/chat or client key)
+        history.push({ role: 'user', content: text });
+        const reply = await callGroqAPI(history, apiKey);
+        history.push({ role: 'assistant', content: reply });
+        removeTyping();
+        appendMessage('bot', reply);
       } catch (err) {
         removeTyping();
-        console.warn('Groq call error, falling back to local intelligence:', err);
+        console.warn('AI call error, falling back to local intelligence:', err);
         // Seamless fallback to local intelligence so user never faces an error screen
         const localAnswer = getLocalResponse(text);
         appendMessage('bot', localAnswer);
